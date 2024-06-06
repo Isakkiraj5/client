@@ -75,7 +75,7 @@ export default function Appointment() {
 
       if (values.paymentMethod === 'razorpay') {
         try {
-          const orderResponse = await axios.post('http://localhost:3000/api/create-order', {
+          const orderResponse = await axios.post('https://servervehiclecare.onrender.com/api/create-order', {
             amount: total,
             currency: 'INR',
             receipt: `receipt_${Date.now()}`,
@@ -89,7 +89,7 @@ export default function Appointment() {
             description: "Service Appointment",
             order_id: orderResponse.data.id,
             handler: async function (response) {
-              await axios.post('http://localhost:3000/api/appointment', { ...values, user_Id: userId, total, paymentId: response.razorpay_payment_id });
+              await axios.post('https://servervehiclecare.onrender.com/api/appointment', { ...values, user_Id: userId, total, paymentId: response.razorpay_payment_id });
               setPopupData({
                 name: values.name,
                 vehicle: values.vehicle,
@@ -122,7 +122,7 @@ export default function Appointment() {
         }
       } else {
         try {
-          await axios.post('http://localhost:3000/api/appointment', { ...values, user_Id: userId, total });
+          await axios.post('https://servervehiclecare.onrender.com/api/appointment', { ...values, user_Id: userId, total });
           setPopupData({
             name: values.name,
             vehicle: values.vehicle,

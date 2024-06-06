@@ -60,7 +60,7 @@ const Login = () => {
     try {
 
 
-      const res = await axios.post("http://localhost:3000/api/forgot-password", values);
+      const res = await axios.post("https://servervehiclecare.onrender.com/api/forgot-password", values);
 
       if (res.data) {
 
@@ -80,7 +80,7 @@ const Login = () => {
   };
 
   const handleResetPasswordSubmit = (values) => {
-    axios.post("http://localhost:3000/api/reset", values)
+    axios.post("https://servervehiclecare.onrender.com/api/reset", values)
       .then((res) => {
         if (res.data) {
           setMessage('Password has been reset. Please login with your new password.');
@@ -212,7 +212,9 @@ const Login = () => {
                   <ErrorMessage name="newPassword" component="div" className="error-message" />
                   {message && (<div className="message">{message}</div>)}
                   <input type="submit" value="Reset Password" className="btn solid" />
+                  <button type="button" className="forget" onClick={() => setForgotPassword(false)}>Back to Sign In</button>
                 </Form>
+                
               )}
             </Formik>
           )}
@@ -277,7 +279,7 @@ const Login = () => {
             <p>
               Welcome to Vehicle Care. Whether you're a car enthusiast or just looking to maintain your vehicle, you've come to the right place.
             </p>
-            <button className="btn" id="sign-up-btn" onClick={() => { setActive(true); setForgotPassword(false); }}>
+            <button className="btn" id="sign-up-btn"  onClick={() => { setActive(false); setForgotPassword(false);setError(false);  setResetPassword(false); }}>
               Sign up
             </button>
           </div>
@@ -289,7 +291,7 @@ const Login = () => {
             <p>
               Thank you for being part of our community. Your presence enriches our shared experiences. Let's continue this journey together!
             </p>
-            <button className="btn " id="sign-in-btn" onClick={() => { setActive(false); setForgotPassword(false); }}>
+            <button className="btn " id="sign-in-btn" onClick={() => { setActive(false); setForgotPassword(false);setError(false);  setResetPassword(false); }}>
               Sign in
             </button>
           </div>

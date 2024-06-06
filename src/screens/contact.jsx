@@ -59,7 +59,7 @@ export default function ContactUs() {
                   </div>
                   <div className="d-flex info_single align-items-center">
                     <i className="fas fa-envelope-open-text"></i>
-                    <span>info@Vehicle Care.com</span>
+                    <span>contact@Vehicle Care.com</span>
                   </div>
                   <div className="d-flex info_single align-items-center">
                     <i className="fas fa-map-marked-alt"></i>
@@ -120,7 +120,7 @@ export default function ContactUs() {
               <h5 className="text-uppercase mb-4 font-weight-bold text-header">Contact</h5>
               <p><i className="fas fa-home mr-3"></i>Unit no.4, Reality Warehousing Pvt. Ltd., Behind Reliance Smart, Wagholi, coimbatore</p>
               <p><i className="fas fa-envelope mr-3"></i> contact@Vehicle Care.com</p>
-              <p><i className="fas fa-phone mr-3"></i> +73 9797 9797</p>
+              <p><i className="fas fa-phone mr-3"></i> +91 8009 000000</p>
             </div>
           </div>
 
