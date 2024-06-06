@@ -70,7 +70,7 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title"> Vehicle Expense</h5>
             <p className="card-text">Calculate the vehile expense Individually</p>
-            <a href={`/dashboard/${userId}/vehicleexpenses`} className="btn btn-primary">Add Now</a>
+            <a href={`/dashboard/${userId}/vehicleexpenses`} className="btn btn-primary">teack Now</a>
           </div>
         </div>
       </div>

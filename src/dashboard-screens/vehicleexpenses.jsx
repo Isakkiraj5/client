@@ -65,7 +65,7 @@ export default function VehicleExpense() {
   }
 
   return (
-    <div className='container'>
+    <div className='container mt-4'>
        <div className="header">Expense Details</div>
       <form onSubmit={formik.handleSubmit}>
         <div className="formbold-mb-5">

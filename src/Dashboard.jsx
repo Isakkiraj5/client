@@ -45,6 +45,11 @@ export default function Dashboard() {
     navigate(`/dashboard/${userId}/vehicleexpenses`)
     console.log("name")
 }
+
+function addvehicle(){
+  navigate(`/dashboard/${userId}/vehicle`)
+  console.log("name")
+}
   return (
    <div className="row mx-0">
     <div className='col-1 px-0'>
@@ -60,6 +65,11 @@ export default function Dashboard() {
             <Tooltip title="Appointment" placement="right-start">
             <button onClick={appointment} className='dashboarditems'>
      <i className="fa-solid fa-calendar-check"></i>
+     </button>
+            </Tooltip>
+            <Tooltip title="Add Vehicle" placement="right-start">
+            <button onClick={addvehicle} className='dashboarditems'>
+            <i className="fa-solid fa-car-side"></i>
      </button>
             </Tooltip>
             <Tooltip title="Service History" placement="right-start">

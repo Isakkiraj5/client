@@ -1,7 +1,7 @@
 
 import React from 'react';
 import "./css/homescreen.css";
-import { Link } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 import logo from '../assets/img/logo.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,10 +16,10 @@ export default function ContactUs() {
       <nav className="navbar px-3 py-2">
         <div className="img"><img src={logo} alt="logo" height={50} /></div>
         <div className="navbar-links">
-          <Link className='link' to="/">Home</Link>
-          <Link className='link' to="/services">Services</Link>
-          <Link className='link' to="/about">About us</Link>
-          <Link className='link' to="/contact">Contact</Link>
+        <NavLink className='link' activeClassName='active1' exact to="/">Home</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/services">Services</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/about">About us</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/contact">Contact</NavLink>
         </div>
         <button onClick={navigation} className="login-btn px-2">Login</button>
       </nav>
@@ -118,7 +118,7 @@ export default function ContactUs() {
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-header">Contact</h5>
-              <p><i className="fas fa-home mr-3"></i>Unit no.4, Reality Warehousing Pvt. Ltd., Behind Reliance Smart, Wagholi, Pune, Maharashtra – 412207</p>
+              <p><i className="fas fa-home mr-3"></i>Unit no.4, Reality Warehousing Pvt. Ltd., Behind Reliance Smart, Wagholi, coimbatore</p>
               <p><i className="fas fa-envelope mr-3"></i> contact@Vehicle Care.com</p>
               <p><i className="fas fa-phone mr-3"></i> +73 9797 9797</p>
             </div>

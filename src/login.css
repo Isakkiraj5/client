@@ -463,5 +463,8 @@ form.sign-in-form {
 .forget{
 all: unset;
   color: #F86F03;
+}
 
+.active{
+  color: #F86F03;
 }

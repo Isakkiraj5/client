@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/homescreen.css'
-import { Link } from 'react-router-dom';
+import { Link ,NavLink} from 'react-router-dom';
 import logo from '../assets/img/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import diagnostic from '../assets/img/Diagnostic.jpg'
@@ -9,6 +9,7 @@ import engine from '../assets/img/engine.jpg'
 import brakes from '../assets/img/brake.jpg'
 import oillube from '../assets/img/oillube.jpg'
 import suspension from '../assets/img/suspension.jpg'
+import userdata from '../assets/img/user.png'
 
 export default function Home() {
   const navigate = useNavigate();
@@ -22,15 +23,16 @@ export default function Home() {
         <div className="img"><img src={logo} alt="" height={50} /></div>
         <div>
           <div>
-            <Link className='link' to="/">Home</Link>
-            <Link className='link' to="/services">Services</Link>
-            <Link className='link' to="/about">About us</Link>
-            <Link className='link' to="/contact">Contact</Link>
+            <NavLink className='link' activeClassName='active1' exact to="/">Home</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/services">Services</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/about">About us</NavLink>
+            <NavLink className='link' activeClassName='active1' to="/contact">Contact</NavLink>
           </div>
         </div>
         <button onClick={navigation} className="login-btn px-2">Login</button>
       </nav>
       <div className="img-background text-center">
+        <div className='blurimg'></div>
         <h2>Welcome to Vehicle Care</h2>
         <h5>Your Trusted Partner in Vehicle Care</h5>
         <p>
@@ -171,9 +173,9 @@ export default function Home() {
                   <p className="review-text">
                     "I had an urgent issue with my brakes and the team at Vehicle Care got me in right away. Their quick response and excellent service gave me peace of mind. I highly recommend them to anyone in need of auto repairs."
                   </p>
-                  <img className="avatar rounded-circle mb-3" src="assets/img/avatar/avatar-1.png" alt="John Doe" />
+                  <img className="avatar rounded-circle mb-3" src={userdata} alt="John Doe" />
                   <h5 className="mb-1">John Doe</h5>
-                  <p className="text-muted mb-0">Engineer</p>
+                 
                 </div>
               </div>
             </div>
@@ -192,9 +194,9 @@ export default function Home() {
                   <p className="review-text">
                     "Vehicle Care provided excellent service when my car needed a thorough inspection. They explained everything clearly and their prices were very fair. I will definitely come back for future maintenance."
                   </p>
-                  <img className="avatar rounded-circle mb-3" src="assets/img/avatar/avatar-2.png" alt="Jane Smith" />
+                  <img className="avatar rounded-circle mb-3" src={userdata} alt="Jane Smith" />
                   <h5 className="mb-1">Jane Smith</h5>
-                  <p className="text-muted mb-0">Teacher</p>
+                 
                 </div>
               </div>
             </div>
@@ -213,9 +215,9 @@ export default function Home() {
                   <p className="review-text">
                     "The team at Vehicle Care is knowledgeable and friendly. They fixed my car quickly and I felt confident driving again. Great customer service and fair prices."
                   </p>
-                  <img className="avatar rounded-circle mb-3" src="assets/img/avatar/avatar-3.png" alt="Michael Lee" />
+                  <img className="avatar rounded-circle mb-3" style={{height:"50px"}} src={userdata} alt="Michael Lee" />
                   <h5 className="mb-1">Michael Lee</h5>
-                  <p className="text-muted mb-0">Designer</p>
+                 
                 </div>
               </div>
             </div>
@@ -254,7 +256,7 @@ export default function Home() {
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-header">Contact</h5>
-              <p><i className="fas fa-home mr-3"></i>Unit no.4, Reality Warehousing Pvt. Ltd., Behind Reliance Smart, Wagholi, Pune, Maharashtra – 412207</p>
+              <p><i className="fas fa-home mr-3"></i>Unit no.4, Reality Warehousing Pvt. Ltd., Behind Reliance Smart, Wagholi, coimbatore</p>
               <p><i className="fas fa-envelope mr-3"></i> contact@Vehicle Care.com</p>
               <p><i className="fas fa-phone mr-3"></i> +73 9797 9797</p>
             </div>

@@ -23,26 +23,40 @@ a{
     width: 100px;
    
 }
-.img-background{
-    background-image: url(../../assets/img/background.jpg);
-    background-color: transparent;
-    background-size: cover;
-    background-position: 50% 50%;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    top: 0px;
-    left: 0px;
-    visibility: inherit;
-    height: 480px;
-    object-fit: contain;
-    background-repeat: no-repeat;
-    color: #fff;
-    padding: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.img-background {
+   position: relative;
+   width: 100%;
+   height: 480px;
+   padding: 70px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   color: #fff;
+   overflow: hidden; /* Ensure the blur doesn't overflow */
+   z-index: 0; /* Ensure the background is behind the text */
+}
+
+.img-background::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-image: url(../../assets/img/background.jpg);
+   background-size: cover;
+   background-position: 50% 50%;
+   filter: blur(10px); /* Adjust the blur strength as needed */
+   z-index: -1; /* Put the blurred image behind everything */
+}
+
+.blurimg {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: transparent;
+   z-index: -1; /* Put the blurred image behind everything */
 }
 
 .img-background>p{
@@ -269,4 +283,23 @@ button.contact_form_submit {
    border: none;
    margin: 0px 10px;
    border-radius: 4px;
+}
+
+.active1{
+   color: #fff !important;
+}
+.active{
+   color: #F86F03 !important;
+   border-bottom: 2px solid #F97C08;
+}
+
+.rounded .rounded-circle{
+   height: 50px !important;
+}
+
+.blurimg{
+   position: absolute;
+   width: 100%;
+   height: 480px;
+   background: transparent;
 }

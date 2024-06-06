@@ -8,12 +8,16 @@ import './login.css';
 const Login = () => {
   const [active, setActive] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [resetPassword, setResetPassword] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState('');
+  const [emailForOTP, setEmailForOTP] = useState('');
   const navigate = useNavigate();
+
   function backfunc(){
     navigate(`/`);
   }
+
   const signInValidationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email address').required('Email is required'),
     password: Yup.string().required('Password is required'),
@@ -32,17 +36,19 @@ const Login = () => {
     email: Yup.string().email('Invalid email address').required('Email is required'),
   });
 
+  const resetPasswordValidationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    otp: Yup.string().required('OTP is required'),
+    newPassword: Yup.string().min(8, 'Password must be at least 8 characters').required('New Password is required'),
+  });
+
   const handleSignInSubmit = (values) => {
-    console.log(values);
     axios.post("https://server-1-rro0.onrender.com/api/login", values)
       .then((res) => {
-        console.log('Login Response:', res.data);
         if (res.data.success) {
-          console.log('Login successful. Redirecting to dashboard...');
-          dashboard(res.data.userId); // Pass userId directly
+          navigate(`/dashboard/${res.data.userId}`);
         } else {
           setError(true);
-          console.log('Login failed:', res.data.message);
         }
       })
       .catch((error) => {
@@ -50,43 +56,65 @@ const Login = () => {
       });
   };
 
-  const handleForgotPasswordSubmit = (values) => {
-    console.log(values);
-    axios.post("http://localhost:3000/api/forgot-password", values)
+  const handleForgotPasswordSubmit = async (values) => {
+    try {
+
+
+      const res = await axios.post("http://localhost:3000/api/forgot-password", values);
+
+      console.log('mailres',res);
+      if (res.data) {
+
+        setEmailForOTP(values.email);
+        setMessage('OTP sent to your email.');
+        setForgotPassword(false);
+        setResetPassword(true);
+        console.log(forgotPassword);
+        console.log(resetPassword);
+       
+      } else {
+        setError(true);
+        setMessage(res.data.message);
+      }
+    } catch (error) {
+      console.error('Forgot Password Error:', error);
+    }
+  };
+
+  const handleResetPasswordSubmit = (values) => {
+    axios.post("http://localhost:3000/api/reset", values)
       .then((res) => {
-        console.log('Forgot Password Response:', res.data);
-        if (res.data.success) {
-          setMessage('Password reset link sent to your email');
-          setForgotPassword(false);
+        if (res.data) {
+          setMessage('Password has been reset. Please login with your new password.');
+          setResetPassword(false);
+          setForgotPassword(false); // Reset all states related to forgot and reset password
+          setError(false); // Clear any error messages
+          setActive(false); // Return to the sign-in form
         } else {
           setError(true);
           setMessage(res.data.message);
         }
       })
       .catch((error) => {
-        console.error('Forgot Password Error:', error);
+        console.error('Reset Password Error:', error);
       });
   };
 
   const handleSignUpSubmit = (values) => {
-    console.log('Sign Up Values:', values);
     axios.post("https://server-1-rro0.onrender.com/api/register", values)
-      .then((res) => console.log(res))
-    setActive(false)
-  };
-
-  const dashboard = (userId) => {
-    navigate(`/dashboard/${userId}`);
+      .then((res) => {
+        setActive(false);
+      })
   };
 
   return (
     <div className="container1">
-      <div>
-        <button style={{float:"right"}} onClick={backfunc} className='forget m-2'><i className="fa-solid fa-chevron-left mx-3"></i>back</button>
+      <div style={{position:"relative",zIndex:9999}}>
+        <button style={{float:"right",}} onClick={backfunc} className='forget m-2'><i className="fa-solid fa-chevron-left mx-3"></i>back</button>
       </div>
       <div className="forms-container1">
         <div className="signin-signup">
-          {!forgotPassword && !active && (
+          {!forgotPassword && !resetPassword && !active && (
             <Formik
               initialValues={{ email: '', password: '' }}
               validationSchema={signInValidationSchema}
@@ -103,7 +131,7 @@ const Login = () => {
                       placeholder="email"
                     />
                   </div>
-                  <ErrorMessage name="username" component="div" className="error-message" />
+                  <ErrorMessage name="email" component="div" className="error-message" />
                   <div className="input-field">
                     <i className="fas fa-lock"></i>
                     <Field
@@ -141,8 +169,51 @@ const Login = () => {
                   </div>
                   <ErrorMessage name="email" component="div" className="error-message" />
                   {message && (<div className="message">{message}</div>)}
-                  <input type="submit" value="Send Reset Link" className="btn solid" />
+                  <input type="submit" value="Send OTP" className="btn solid" />
                   <button type="button" className="forget" onClick={() => setForgotPassword(false)}>Back to Sign In</button>
+                </Form>
+              )}
+            </Formik>
+          )}
+          {resetPassword && (
+            <Formik
+              initialValues={{ email: emailForOTP, otp: '', newPassword: '' }}
+              validationSchema={resetPasswordValidationSchema}
+              onSubmit={handleResetPasswordSubmit}
+            >
+              {() => (
+                <Form className="reset-password-form">
+                  <h2 className="title">Reset Password</h2>
+                  <div className="input-field">
+                    <i className="fas fa-envelope"></i>
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      disabled
+                    />
+                  </div>
+                  <ErrorMessage name="email" component="div" className="error-message" />
+                  <div className="input-field">
+                    <i className="fas fa-key"></i>
+                    <Field
+                      type="text"
+                      name="otp"
+                      placeholder="OTP"
+                    />
+                  </div>
+                  <ErrorMessage name="otp" component="div" className="error-message" />
+                  <div className="input-field">
+                    <i className="fas fa-lock"></i>
+                    <Field
+                      type="password"
+                      name="newPassword"
+                      placeholder="New Password"
+                    />
+                  </div>
+                  <ErrorMessage name="newPassword" component="div" className="error-message" />
+                  {message && (<div className="message">{message}</div>)}
+                  <input type="submit" value="Reset Password" className="btn solid" />
                 </Form>
               )}
             </Formik>
@@ -204,7 +275,7 @@ const Login = () => {
       <div className="panels-container1">
         <div className="panel left-panel">
           <div className="content">
-            <h3>New to Our Community?</h3>
+            <h3>Vehicle Care</h3>
             <p>
               Welcome to Vehicle Care. Whether you're a car enthusiast or just looking to maintain your vehicle, you've come to the right place.
             </p>
