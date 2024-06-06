@@ -14,7 +14,7 @@ export default function ServiceHistory() {
       try {
         const response = await axios.get(`https://server-1-rro0.onrender.com/api/appointments/${userId}`);
         setAppointments(response.data.serviceDetail);
-        console.log()
+    
       } catch (err) {
         console.error('Error fetching appointments:', err.response?.data || err.message);
         setError('Error fetching appointments');
@@ -41,7 +41,7 @@ export default function ServiceHistory() {
         ...appointment.time.split(':').map(Number)
       );
       
-      // Calculate time difference in hours
+    
       const timeDifferenceHours = (appointmentDateTime.getTime() - now.getTime()) / (1000 * 3600);
   
       if (timeDifferenceHours < -12) {
@@ -108,6 +108,7 @@ function renderTable(appointments) {
           <th>Time</th>
           <th>Services</th>
           <th>Total</th>
+          <th>Payment</th>
         </tr>
       </thead>
       <tbody>
@@ -119,6 +120,7 @@ function renderTable(appointments) {
             <td>{appointment.time}</td>
             <td>{appointment.services.join(', ')}</td>
             <td>{appointment.total}</td>
+            <td>{appointment.paymentMethod}</td>
           </tr>
         ))}
       </tbody>

@@ -14,11 +14,11 @@ export default function Dashboard() {
         const fetchAppointment = async () => {
           try {
             const appointmentId = userId;
-            const baseUrl = 'https://server-1-rro0.onrender.com';
-           // console.log("URL",`${baseUrl}/api/user/${appointmentId}`);
-            const response =  await axios.get(`${baseUrl}/api/user/${appointmentId}`);
            
-            setUserdata(response.data); // Assuming response.data is the appointment object
+         
+            const response =  await axios.get(`https://server-1-rro0.onrender.com/api/user/${appointmentId}`);
+           
+            setUserdata(response.data); 
           } catch (err) {
             console.error('Error fetching appointment:', err.response.data);
             setError('Error fetching appointment details');
@@ -31,24 +31,24 @@ export default function Dashboard() {
     const navigate=useNavigate()
     function home(){
         navigate(`/dashboard/${userId}`)
-        console.log("name")
+      
     }
     function appointment(){
         navigate(`/dashboard/${userId}/appointment`)
-        console.log("name")
+       
     }
     function servicehistory(){
       navigate(`/dashboard/${userId}/servicehistory`)
-      console.log("name")
+
   }
   function vehicleexpenses(){
     navigate(`/dashboard/${userId}/vehicleexpenses`)
-    console.log("name")
+    
 }
 
 function addvehicle(){
   navigate(`/dashboard/${userId}/vehicle`)
-  console.log("name")
+
 }
   return (
    <div className="row mx-0">

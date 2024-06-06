@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './css/homescreen.css'; // Import the CSS file
+import './css/homescreen.css';
 import { Link,NavLink } from 'react-router-dom';
 import logo from '../assets/img/logo.svg';
 import { useNavigate } from 'react-router-dom';
@@ -12,13 +12,13 @@ import suspension from '../assets/img/suspension.jpg';
 
 export default function Services() {
   const navigate = useNavigate();
-  const [filter, setFilter] = useState('all'); // State to track selected filter
+  const [filter, setFilter] = useState('all'); 
 
   const navigation = () => {
     navigate('/login');
   };
 
-  // Define services data with pricing
+
   const services = [
     { category: 'all', image: diagnostic, title: 'Diagnostics', description: 'Accurate and thorough diagnostics to identify and address any issues with your vehicle. Our advanced diagnostic tools and techniques ensure precise detection and quick resolution.', price: '$50' },
     { category: 'all', image: Detailing, title: 'Dent and Paint Repairs', description: 'Professional dent removal and paint repair services to restore your vehicle\'s appearance. We use top-quality materials and techniques to ensure a flawless finish.', price: '$100 - $500' },

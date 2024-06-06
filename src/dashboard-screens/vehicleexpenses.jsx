@@ -17,7 +17,7 @@ export default function VehicleExpense() {
       try {
         const response = await axios.get(`https://server-1-rro0.onrender.com/api/vehicle/${userId}`);
         setUserdata(response.data.userDetail);
-        console.log("data", response.data.userDetail);
+       
       } catch (err) {
         console.error('Error fetching user data:', err.response?.data || err.message);
         setError('Error fetching user data');
@@ -50,10 +50,7 @@ export default function VehicleExpense() {
     validationSchema: Yup.object({
       vehicle: Yup.string().required('Vehicle is required')
     }),
-    onSubmit: values => {
-      console.log('Form values:', values);
-      // Handle form submission
-    }
+   
   });
 
   if (loading) {

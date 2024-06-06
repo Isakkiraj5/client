@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import expense from  '../assets/img/expenses.svg'
 
 export default function Homescreen() {
-  const { userId } = useParams(); // Extract userId from route parameters
+  const { userId } = useParams(); 
   const [userdata, setUserdata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -70,7 +70,7 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title"> Vehicle Expense</h5>
             <p className="card-text">Calculate the vehile expense Individually</p>
-            <a href={`/dashboard/${userId}/vehicleexpenses`} className="btn btn-primary">teack Now</a>
+            <a href={`/dashboard/${userId}/vehicleexpenses`} className="btn btn-primary">Calculate</a>
           </div>
         </div>
       </div>

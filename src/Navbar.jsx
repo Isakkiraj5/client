@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Navbar(props) {
   const{data}=props
- 
+
  const navigate=useNavigate()
   function navigation(){
     navigate('/login')
@@ -12,7 +12,7 @@ export default function Navbar(props) {
     <>
     <nav className='navbar-1'>
    
-      <div><i className="fa-solid fa-user mx-3"></i>{} </div>
+      <div><i className="fa-solid fa-user mx-3"></i>{data.userDetail.username} </div>
       <button onClick={navigation} className="logout-btn px-2">Log out</button>
     </nav>
     </>

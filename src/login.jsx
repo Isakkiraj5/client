@@ -62,15 +62,13 @@ const Login = () => {
 
       const res = await axios.post("http://localhost:3000/api/forgot-password", values);
 
-      console.log('mailres',res);
       if (res.data) {
 
         setEmailForOTP(values.email);
         setMessage('OTP sent to your email.');
         setForgotPassword(false);
         setResetPassword(true);
-        console.log(forgotPassword);
-        console.log(resetPassword);
+      
        
       } else {
         setError(true);
@@ -87,9 +85,9 @@ const Login = () => {
         if (res.data) {
           setMessage('Password has been reset. Please login with your new password.');
           setResetPassword(false);
-          setForgotPassword(false); // Reset all states related to forgot and reset password
-          setError(false); // Clear any error messages
-          setActive(false); // Return to the sign-in form
+          setForgotPassword(false);
+          setError(false); 
+          setActive(false); 
         } else {
           setError(true);
           setMessage(res.data.message);

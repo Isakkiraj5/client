@@ -26,14 +26,14 @@ export default function AddVehicle() {
         .max(new Date().getFullYear(), 'Enter a valid year'),
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
-      console.log("vehicle Values", { ...values, user_Id: userId });
+     
       axios.post('https://server-1-rro0.onrender.com/api/vehicle', { ...values, user_Id: userId })
         .then(response => {
-          console.log(response);
+   
           setSubmissionSuccess(true);
-          resetForm(); // Reset the form fields
+          resetForm();
           setSubmitting(false);
-          setTimeout(() => setSubmissionSuccess(false), 3000); // Hide the success message after 3 seconds
+          setTimeout(() => setSubmissionSuccess(false), 3000); 
         })
         .catch(error => {
           console.error(error);
