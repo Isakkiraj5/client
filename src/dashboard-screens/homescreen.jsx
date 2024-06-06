@@ -7,6 +7,7 @@ import '../App.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import expense from  '../assets/img/expenses.svg'
+import { useNavigate } from 'react-router-dom';
 
 export default function Homescreen() {
   const { userId } = useParams(); 
@@ -32,6 +33,26 @@ export default function Homescreen() {
     fetchAppointment();
   }, [userId]);
 
+  const navigate=useNavigate()
+
+  function appointment(){
+      navigate(`/dashboard/${userId}/appointment`)
+     
+  }
+  function servicehistory(){
+    navigate(`/dashboard/${userId}/servicehistory`)
+
+}
+function vehicleexpenses(){
+  navigate(`/dashboard/${userId}/vehicleexpenses`)
+  
+}
+
+function addvehicle(){
+navigate(`/dashboard/${userId}/vehicle`)
+
+}
+
   return (
     <div className='row p-3'>
       <div className='col-md-3'>
@@ -40,7 +61,7 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title">Book Appointment</h5>
             <p className="card-text">Schedule your vehicle service appointment easily and conveniently.</p>
-            <a href={`/dashboard/${userId}/appointment`} className="btn btn-primary">Book Now</a>
+             <button onClick={appointment} className='btn'>Book Now</button>
           </div>
         </div>
       </div>
@@ -50,7 +71,8 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title">Add Vehicle</h5>
             <p className="card-text">Add your vehicle details for a better service experience.</p>
-            <a href={`/dashboard/${userId}/vehicle`} className="btn btn-primary">Add Now</a>
+           
+            <button onClick={addvehicle} className='btn'>Add Now</button>
           </div>
         </div>
       </div>
@@ -60,7 +82,7 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title">Service History</h5>
             <p className="card-text">Monitor the status of your vehicle service easily.</p>
-            <a href={`/dashboard/${userId}/servicehistory`} className="btn btn-primary">Track Now</a>
+            <button onClick={servicehistory} className='btn'>Track Now</button>
           </div>
         </div>
       </div>
@@ -70,7 +92,8 @@ export default function Homescreen() {
           <div className="card-body text-center">
             <h5 className="card-title"> Vehicle Expense</h5>
             <p className="card-text">Calculate the vehile expense Individually</p>
-            <a href={`/dashboard/${userId}/vehicleexpenses`} className="btn btn-primary">Calculate</a>
+            
+            <button onClick={vehicleexpenses} className='btn'>Calculate</button>
           </div>
         </div>
       </div>

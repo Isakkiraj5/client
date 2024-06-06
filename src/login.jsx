@@ -279,7 +279,7 @@ const Login = () => {
             <p>
               Welcome to Vehicle Care. Whether you're a car enthusiast or just looking to maintain your vehicle, you've come to the right place.
             </p>
-            <button className="btn" id="sign-up-btn"  onClick={() => { setActive(false); setForgotPassword(false);setError(false);  setResetPassword(false); }}>
+            <button className="btn" id="sign-up-btn"  onClick={() => { setActive(true); setForgotPassword(false);setError(false);  setResetPassword(false); }}>
               Sign up
             </button>
           </div>
