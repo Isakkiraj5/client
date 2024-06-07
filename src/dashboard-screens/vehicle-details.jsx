@@ -26,10 +26,8 @@ export default function AddVehicle() {
         .max(new Date().getFullYear(), 'Enter a valid year'),
     }),
     onSubmit: (values, { setSubmitting, resetForm }) => {
-     
       axios.post('https://server-1-rro0.onrender.com/api/vehicle', { ...values, user_Id: userId })
         .then(response => {
-   
           setSubmissionSuccess(true);
           resetForm();
           setSubmitting(false);
@@ -59,7 +57,7 @@ export default function AddVehicle() {
               {...formik.getFieldProps('vehicleNumber')}
             />
             {formik.touched.vehicleNumber && formik.errors.vehicleNumber ? (
-              <div>{formik.errors.vehicleNumber}</div>
+              <div className="formbold-error">{formik.errors.vehicleNumber}</div>
             ) : null}
           </div>
 
@@ -74,7 +72,7 @@ export default function AddVehicle() {
               {...formik.getFieldProps('vehicleModel')}
             />
             {formik.touched.vehicleModel && formik.errors.vehicleModel ? (
-              <div>{formik.errors.vehicleModel}</div>
+              <div className="formbold-error">{formik.errors.vehicleModel}</div>
             ) : null}
           </div>
 
@@ -89,7 +87,7 @@ export default function AddVehicle() {
               {...formik.getFieldProps('vehicleMake')}
             />
             {formik.touched.vehicleMake && formik.errors.vehicleMake ? (
-              <div>{formik.errors.vehicleMake}</div>
+              <div className="formbold-error">{formik.errors.vehicleMake}</div>
             ) : null}
           </div>
 
@@ -104,7 +102,7 @@ export default function AddVehicle() {
               {...formik.getFieldProps('vehicleYear')}
             />
             {formik.touched.vehicleYear && formik.errors.vehicleYear ? (
-              <div>{formik.errors.vehicleYear}</div>
+              <div className="formbold-error">{formik.errors.vehicleYear}</div>
             ) : null}
           </div>
 

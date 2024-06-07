@@ -158,12 +158,13 @@ export default function Appointment() {
     setPopupData(null);
     setAppointmentBooked(false);
   };
-  const navigate=useNavigate()
-  function addvehicle(){
-    navigate(`/dashboard/${userId}/vehicle`)
-   
+  
+  const navigate = useNavigate();
+  
+  function addVehicle() {
+    navigate(`/dashboard/${userId}/vehicle`);
   }
- 
+
   const today = new Date().toISOString().split('T')[0];
 
   if (loading) {
@@ -197,22 +198,25 @@ export default function Appointment() {
               id="vehicle"
               className="formbold-form-input"
               {...formik.getFieldProps('vehicle')}
+              disabled={userdata.length === 0}
             >
               <option value="">Select Vehicle</option>
               {userdata.length === 0 ? (
-    <div>
-        <p>No vehicles found. Please add a vehicle.</p>
-        
-        <button className='btn' onClick={addvehicle}>Add Vehicle</button>
-    </div>
-) : (
-    userdata.map(vehicle => (
-        <option key={vehicle.id} value={vehicle.vehicleNumber}>
-            {vehicle.vehicleModel}-{vehicle.vehicleNumber}
-        </option>
-    ))
-)}
+                <option value="" disabled>No vehicles found</option>
+              ) : (
+                userdata.map(vehicle => (
+                  <option key={vehicle.id} value={vehicle.vehicleNumber}>
+                    {vehicle.vehicleModel}-{vehicle.vehicleNumber}
+                  </option>
+                ))
+              )}
             </select>
+            {userdata.length === 0 && (
+              <div>
+                <p>No vehicles found. Please add a vehicle.</p>
+                <button type="button" className="btn" onClick={addVehicle}>Add Vehicle</button>
+              </div>
+            )}
             {formik.touched.vehicle && formik.errors.vehicle ? <div>{formik.errors.vehicle}</div> : null}
           </div>
 
@@ -261,7 +265,7 @@ export default function Appointment() {
               name="date"
               id="date"
               className="formbold-form-input"
-              min={today} 
+              min={today}
               {...formik.getFieldProps('date')}
             />
             {formik.touched.date && formik.errors.date ? <div>{formik.errors.date}</div> : null}
